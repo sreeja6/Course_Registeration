@@ -1,0 +1,10 @@
+{% extends 'student_sucessfully_login.html' %}
+{% block sree %}
+    {% if enr %}
+    {% for x in enr %}
+    {{ x.Course_name }}
+    {% endfor %}
+        {% else %}
+        <h3>YOU didnot enroll any classes-----Please enroll</h3>
+    {% endif %}
+{% endblock %}

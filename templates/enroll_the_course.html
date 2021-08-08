@@ -1,0 +1,61 @@
+{% extends 'student_sucessfully_login.html' %}
+{% block sree %}
+    <style>
+    .second_row
+    {
+        font-size: 20px;
+    }
+    .third_row
+    {
+        color: purple;
+    }
+    #t
+    {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    </style>
+    <table align="center" border="2" id="t">
+    <tr>
+
+        <th class="second_row">Name</th>
+        <th class="second_row">Faculty</th>
+        <th class="second_row">Date</th>
+        <th class="second_row">Time</th>
+        <th class="second_row">Fee</th>
+        <th class="second_row">Duration</th>
+        <th class="second_row">Enroll</th>
+    </tr>
+        {% for x in data %}
+    <tr>
+        <th class="third_row">{{ x.Name }}</th>
+        <th class="third_row">{{ x.Faculty }}</th>
+        <th class="third_row">{{ x.Date }}</th>
+        <th class="third_row">{{ x.Time }}</th>
+        <th class="third_row">{{ x.Fee }}</th>
+        <th class="third_row">{{ x.Duration }}</th>
+        <th>
+            <form action="{% url 'student_enroll_sucess' %}" method="post">
+                {% csrf_token %}
+
+        <input type="number" value="{{ request.session.user }}" name="s1">
+       <input type="name" value="{{ x.Name }}" name="s2">
+      <button type="submit">Yes</button>
+            </form>
+
+        </th>
+    {% if messages %}
+        {% for x in messages %}
+            <tr><th colspan="7">{{ x }}</th></tr>
+        {% endfor %}
+    {% endif %}
+
+
+
+
+    </tr>
+    {% endfor %}
+    </table>
+
+
+{% endblock %}
